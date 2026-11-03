@@ -17,9 +17,12 @@ The whole point: **show, don't tell** — and never fake. Three modes:
 | default | the `goat` CLI and a goatnet context | read steps run against the goatnet; write steps are shown |
 | `--for-real` | an operator profile on that goatnet | write steps run too, minting real identities |
 
-If you don't have a goatnet, the goatlite tutorial stands one up on a single box:
-[`docs/tutorials/00-goatlite.md`](https://github.com/usareur-af/goatcore/blob/main/docs/tutorials/00-goatlite.md)
-in goatcore. Every claim is graded in [the honesty matrix](docs/honesty-matrix.md).
+The goatnet can be any appropriate goatnet you have access to:
+EFDI, the shared sandbox goatnet that partners are onboarded to (if you are onboarded to it); <!-- oss-allow: operator-approved public example goatnet -->
+a goatlite you stand up yourself on a single box (goatcore's
+[`docs/tutorials/00-goatlite.md`](https://github.com/usareur-af/goatcore/blob/main/docs/tutorials/00-goatlite.md));
+or another goatnet you have access to. `--for-real` mints identities, so it needs an
+operator profile from that goatnet's operators. Every claim is graded in [the honesty matrix](docs/honesty-matrix.md).
 
 ---
 
@@ -70,7 +73,7 @@ Every scenario README stands on its own; read them in order the first time.
 bin/hg-onboard list                     # the scenarios, in order
 bin/hg-onboard all --offline            # the whole walkthrough, no goatnet needed
 bin/hg-onboard 00-orient                # start here
-bin/hg-onboard 04-see-the-custody       # read-only, runs against your goatnet
+bin/hg-onboard 04-see-the-custody       # read-only, runs against the goatnet you are using
 bin/hg-onboard 02-onboard-a-machine --for-real   # actually mint (operator profile)
 ```
 
