@@ -1,0 +1,47 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: shellcheck the scripts
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
+          # Drivers source the lib at runtime; SC2034 = cross-file globals set in
+          # the lib and read by the sourcing scripts.
+          shellcheck -e SC1090,SC1091,SC2086,SC2046,SC2034,SC2164 \
+            lib/onboarding.sh bin/hg-onboard scenarios/*/run.sh
+
+      - name: every scenario has a README and a run.sh
+        run: |
+          rc=0
+          for d in scenarios/*/; do
+            [ -f "$d/README.md" ] || { echo "missing README: $d"; rc=1; }
+            [ -f "$d/run.sh" ]   || { echo "missing run.sh: $d"; rc=1; }
+            bash -n "$d/run.sh"  || { echo "syntax error: $d/run.sh"; rc=1; }
+          done
+          exit $rc
+
+      - name: scripts are executable
+        run: |
+          rc=0
+          for f in bin/hg-onboard scenarios/*/run.sh; do
+            [ -x "$f" ] || { echo "not executable: $f"; rc=1; }
+          done
+          exit $rc
+
+      - name: the whole walkthrough runs offline
+        run: |
+          NO_COLOR=1 bin/hg-onboard all --offline | tee walkthrough.log
+          grep -q 'shown, not run (offline)' walkthrough.log
+          ! grep -q '✗' walkthrough.log

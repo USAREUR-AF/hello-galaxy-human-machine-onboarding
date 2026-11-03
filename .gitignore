@@ -1,0 +1,11 @@
+# run captures + generated bundles — never committed
+*.cbor
+*.tar.gz
+*.pem
+*.key
+out/
+report/.captures/
+*.log
+
+# os noise
+.DS_Store

@@ -1,0 +1,163 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Human &amp; machine onboarding · Hello Galaxy</title>
+<style>
+:root{
+  --bg:#0e1116; --panel:#161b22; --panel2:#1c232c; --ink:#e6edf3; --dim:#9aa7b4;
+  --line:#2a323c; --accent:#f5b14c; --accent2:#5ec8cd; --green:#3fb950; --amber:#d29922;
+  --red:#f85149; --blue:#58a6ff; --mono:"SFMono-Regular",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 70% -10%,#1b2430,transparent),var(--bg);
+  color:var(--ink);font:16px/1.6 ui-sans-serif,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+.wrap{max-width:980px;margin:0 auto;padding:48px 24px 96px}
+header.hero{padding:28px 0 8px;border-bottom:1px solid var(--line);margin-bottom:36px}
+.kick{color:var(--accent);font:600 13px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:34px;margin:.25em 0 .1em;letter-spacing:-.5px}
+h2{font-size:24px;margin:2.4em 0 .5em;padding-top:.4em;border-top:1px solid var(--line)}
+h3{font-size:18px;margin:1.6em 0 .4em;color:#cdd9e5}
+.lede{color:var(--dim);font-size:18px;max-width:72ch}
+.meta{color:var(--dim);font:13px/1.5 var(--mono);margin-top:14px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(4,1fr);margin:22px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card .n{font:700 26px var(--mono);letter-spacing:-1px}
+.card .l{color:var(--dim);font-size:12.5px;margin-top:3px}
+.card.good .n{color:var(--green)} .card.warn .n{color:var(--amber)} .card.hot .n{color:var(--accent2)}
+figure{margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+figure img{width:100%;height:auto;display:block}
+figcaption{color:var(--dim);font-size:13.5px;margin-top:12px;text-align:center}
+ol.seq{counter-reset:s;list-style:none;padding-left:0;margin:16px 0}
+ol.seq>li{position:relative;padding:10px 0 10px 44px;border-bottom:1px solid var(--line)}
+ol.seq>li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:9px;
+  width:28px;height:28px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);
+  color:var(--accent);font:700 13px var(--mono);text-align:center;line-height:28px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font:600 12px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+td.mono,code{font-family:var(--mono)} code{background:var(--panel2);padding:1px 6px;border-radius:6px;font-size:13px}
+.pill{font:600 11px var(--mono);padding:2px 8px;border-radius:999px}
+.pill.live{color:#7ee2a8;background:#10261a;border:1px solid #1f6f3f}
+.pill.rep{color:#e7c07b;background:#241c0e;border:1px solid #6f561f}
+.note{color:var(--dim);font-size:14px;border-left:3px solid var(--accent);padding:6px 0 6px 14px;margin:14px 0}
+a{color:var(--blue)}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><div class="wrap">
+
+<header class="hero">
+  <div class="kick">hello-galaxy · usareur-af</div>
+  <h1>Onboarding a human &amp; a machine</h1>
+  <p class="lede">How the goat fabric gives a person, a headless sensor, and a
+  drone-that-decomposes-into-workloads their identities — two ceremonies under one
+  grammar, and the one idea (asymmetric gates) that makes them coherent.</p>
+  <div class="meta">a Hello Galaxy teaching walkthrough · read top-to-bottom · every command is real (see the honesty matrix)</div>
+</header>
+
+<div class="grid">
+  <div class="card good"><div class="n">2</div><div class="l">human gates to onboard a person</div></div>
+  <div class="card good"><div class="n">0</div><div class="l">gates to enroll a machine (the quota is the proof)</div></div>
+  <div class="card hot"><div class="n">1</div><div class="l">quota unit for a whole PLATFORM, workloads and all</div></div>
+  <div class="card good"><div class="n">1</div><div class="l">command to mint a machine's full identity, atomically</div></div>
+</div>
+
+<p>Onboarding is not "create an account." It is: give an entity a cryptographic
+identity across the planes it needs, place it in the registry under its unit, stamp
+it with the grammar, and record who brought it online. There are two kinds of
+principal — a <b>person</b> and a <b>machine</b> — and they run <b>sibling</b>
+ceremonies. Same grammar, same registry, <i>different gates</i>. That difference is
+the whole story.</p>
+
+<div class="note"><b>Said out loud, because it is often gotten backwards:</b> a
+Zenoh publisher is a <b>certificate Common Name, not a person</b>. The router admits
+writes by CN and never asks whether the holder is human. A machine gets its
+<i>own</i> cert and CN; a platform's workloads get their own SVIDs (compose by CN) —
+each is a first-class, non-person publisher. "Publishers can only be people and
+their keys" describes a legacy habit — one identity per person, machines
+indistinguishable under it — that the machine flow below <i>dissolved</i>. The
+full correction is <a href="../docs/who-can-be-a-publisher.md">who can be a
+publisher</a>.</div>
+
+<h2 id="two">The two ceremonies, and why the gates differ</h2>
+<figure>
+  <img src="figures/two-ceremonies.svg" alt="Two ceremonies side by side: a person passes two gates, a machine passes zero.">
+  <figcaption>A person is a stranger to prove (two human gates). A machine is a vetted person's property (their quota is the proof).</figcaption>
+</figure>
+<p>A person has no identity yet and no one has vouched for them, so the person flow
+spends <b>two human gates</b> — a sponsor vouches, then an admin approves — and no
+single actor both invites and admits. A machine is different: it is the property of
+a person who was <i>already</i> proved through those two gates, so re-proving it
+would be theatre. Instead, that person carries a <b>machine quota</b> — a standing
+authorization to bring their own machines online. The quota <i>is</i> the gate.</p>
+
+<h2 id="machine">Onboard a machine — one command, atomic</h2>
+<figure>
+  <img src="figures/machine-enroll.svg" alt="goat machine enroll allocates a slot, mints a cert, records the custody edge, and decrements quota, atomically.">
+  <figcaption><code>goat machine enroll</code> mints the machine's own identity — or nothing at all — in one transaction.</figcaption>
+</figure>
+<ol class="seq">
+  <li>The custodian runs one command, naming the machine, its <b>node-class</b> (what kind of asset), and its <b>autonomy</b>.</li>
+  <li>The server checks the custodian's quota — <b>fail-closed</b>, inside the transaction, so two concurrent enrolls can't together exceed the grant.</li>
+  <li>It allocates the machine its <b>own</b> <code>&lt;uuid&gt;/&lt;taxonomy&gt;</code> slot — the thing that makes it wire-distinguishable — and mints a Zenoh cert whose <b>CN is that slot anchor</b>.</li>
+  <li>It records the <b>custody edge</b> (<code>enrolled_by</code>), decrements the quota, and writes one custodian-attributed audit event.</li>
+  <li>What it does <b>not</b> do: no <code>.cbor</code> bundle, no Ory login. A machine gets mesh + fabric identity only.</li>
+</ol>
+<div class="note">Retire the machine later and its quota comes back <b>by construction</b>: remaining is
+<i>derived</i> (<code>quota − live-enrolled</code>), never stored. Infrastructure classes
+(<code>MGMT-HOST</code>, <code>ZENOH</code>, …) are the one exception — they shape the goatnet
+itself, so they stay operator-gated, attributed to the custodian.</div>
+
+<h2 id="platform">Decompose a platform — one asset, several workloads</h2>
+<figure>
+  <img src="figures/platform-decompose.svg" alt="A PLATFORM records a workload composition; SPIRE mints one SVID per function, all sharing the platform's CN.">
+  <figcaption>A UAS is sensor + effector + processor. It costs one quota unit; the workloads are its internal composition.</figcaption>
+</figure>
+<p>You declare the composition at enroll (<code>--workloads sensor,effector,processor</code>).
+The <b>portal records</b> it as a born-as attribute on the machine; <b>SPIRE mints</b> the
+actual per-workload SVIDs. Each authority owns one identity class and neither proxies the
+other. Every workload SVID carries the <b>platform's slot anchor as its CN</b> — so it
+composes under the platform's namespace exactly as the platform does (<b>compose by CN</b>) —
+while its distinct <code>spiffe_id = &lt;platform&gt;/&lt;function&gt;</code> is the SPIFFE
+attribution that separates sensor from effector.</p>
+
+<h2 id="see">See the custody edge — read it back, live</h2>
+<p>Onboarding recorded who enrolled what. Three surfaces read that edge back,
+read-only:</p>
+<table>
+  <tr><th>surface</th><th>shows</th></tr>
+  <tr><td class="mono">goat machine ls</td><td>the fleet (operator) or your own machines — node-class / autonomy / (platform) workloads + remaining quota</td></tr>
+  <tr><td class="mono">goat access who &lt;id&gt;</td><td>an identity's custodied machines, in the Data-Access COP</td></tr>
+  <tr><td class="mono">goat who</td><td>the full-screen identity browser; the detail pane's CUSTODY section shows the same edge</td></tr>
+</table>
+
+<h2 id="why">The philosophy — why this shape</h2>
+<h3>Identity-first, not network-first</h3>
+<p>The fabric finds itself by identity. A principal's cert + custody edge come before any
+capability; access is <i>derived</i> from identity, never the reverse.</p>
+<h3>Cert = born-as; registry = currently-is</h3>
+<p>Immutable facts about what a principal was <i>minted as</i> live in the cert; mutable
+facts about what it <i>currently is</i> live in the registry. A sensor is born a sensor;
+a unit that changes on reorg is currently-is.</p>
+<h3>Sibling ceremonies, asymmetric gates</h3>
+<p>Humans and machines share the grammar and the registry but not the gates, because the
+trust question differs. Collapsing them into one flow would either over-gate machines or
+under-gate people.</p>
+<h3>Each authority owns one identity class</h3>
+<p>The portal owns human + machine identity + custody; SPIRE owns workload SVIDs; NetBird
+owns mesh membership; Ory owns human console login. Onboarding <i>composes</i> these — it
+never proxies one authority through another.</p>
+
+<h2 id="honesty">What's live vs represented</h2>
+<p>Onboarding mints real identities on a real fabric, so this walkthrough grades every
+claim. A WRITE step is <i>shown</i> by default and only <i>executed</i> with
+<code>--for-real</code> against an operator profile; read steps run outright.</p>
+<table>
+  <tr><th>element</th><th>grade</th></tr>
+  <tr><td>the <code>goat</code> commands, exactly as an operator runs them</td><td><span class="pill live">live</span> shown; run with --for-real</td></tr>
+  <tr><td>machine enrollment (own slot + cert + custody + quota)</td><td><span class="pill live">live</span></td></tr>
+  <tr><td>the custody read-back (<code>machine ls</code> / <code>access who</code> / <code>who</code>)</td><td><span class="pill live">live</span></td></tr>
+  <tr><td>the three-stage human flow (needs a portal + sponsor + admin)</td><td><span class="pill rep">needs-operator</span></td></tr>
+  <tr><td>SPIRE workload-SVID registration (needs deploy-time selectors)</td><td><span class="pill rep">represented</span></td></tr>
+</table>
+<p class="meta">Full grading in <a href="../docs/honesty-matrix.md">docs/honesty-matrix.md</a>.
+Follow along with <code>bin/hg-onboard 00-orient</code> → <code>04-see-the-custody</code>.</p>
+
+</div></body></html>

@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# hg-onboard — run a human/machine onboarding demonstration scenario.
+#
+#   bin/hg-onboard <scenario> [--env <ctx>] [--offline] [--for-real] [args...]
+#   bin/hg-onboard list
+#   bin/hg-onboard all  [--env <ctx>]     run every scenario in order
+#
+# Thin dispatcher: resolves the scenario folder and execs its run.sh. All logic
+# lives in the scenario drivers and lib/onboarding.sh.
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SCEN_DIR="$ROOT/scenarios"
+
+usage() {
+  cat <<EOF
+hello-galaxy-human-machine-onboarding — runnable onboarding scenarios
+
+usage:
+  bin/hg-onboard <scenario> [--env <ctx>] [--offline] [--for-real] [args...]
+  bin/hg-onboard list
+  bin/hg-onboard all  [--env <ctx>]     run every scenario in order
+
+scenarios (run in order the first time):
+EOF
+  for d in "$SCEN_DIR"/*/; do
+    name="$(basename "$d")"
+    title="$(sed -n 's/^# *//p' "$d/README.md" 2>/dev/null | head -1)"
+    printf '  %-24s %s\n' "$name" "$title"
+  done
+  cat <<EOF
+
+env:
+  --offline               show every command, run none (automatic when goat is
+                          not on PATH) — needs no goatnet
+  --env <ctx>             a goat context (default: the active one); read steps
+                          run against it
+  --for-real              actually execute the WRITE steps (mints real identities;
+                          needs an operator profile; use throwaway handles)
+
+examples:
+  bin/hg-onboard all --offline
+  bin/hg-onboard 04-see-the-custody --env my-goatnet
+  bin/hg-onboard 02-onboard-a-machine --for-real
+EOF
+}
+
+cmd="${1:-}"; shift || true
+case "$cmd" in
+  ""|-h|--help|help) usage; exit 0 ;;
+  list) for d in "$SCEN_DIR"/*/; do basename "$d"; done; exit 0 ;;
+  all)
+    rc=0
+    for d in "$SCEN_DIR"/*/; do
+      bash "$d/run.sh" "$@" || rc=1
+    done
+    exit "$rc" ;;
+  *)
+    dir="$SCEN_DIR/$cmd"
+    if [ ! -d "$dir" ]; then
+      echo "unknown scenario: $cmd" >&2
+      echo "run 'bin/hg-onboard list' to see them." >&2
+      exit 2
+    fi
+    exec bash "$dir/run.sh" "$@" ;;
+esac
