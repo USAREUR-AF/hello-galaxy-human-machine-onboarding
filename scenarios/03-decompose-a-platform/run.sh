@@ -13,7 +13,8 @@ hg_step "1 — Enroll the PLATFORM, declaring its composition"
 hg_note "Workloads are FUNCTION classes. The worked example: one ground-segment box that"
 hg_note "both cues and arbitrates — EFFECTOR-CUE + EFFECTOR-ARBITER, both groups."
 hg_goat_write machine enroll "$HANDLE" --node-class PLATFORM --autonomy supervised \
-  --workloads effector-cue,effector-arbiter
+  --workloads effector-cue,effector-arbiter \
+  ${HG_CUSTODIAN:+--custodian "$HG_CUSTODIAN"}
 
 hg_step "2 — A PLATFORM has no reach of its own"
 hg_say "It is a COMPOSITION, so its mesh groups are the UNION of its declared"

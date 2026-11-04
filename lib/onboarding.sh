@@ -23,6 +23,8 @@ fi
 # --- env parsing -------------------------------------------------------------
 # Sets HG_CTX (the goat context: --env, else $GOAT_CONTEXT, else current_context
 # in the goat config, else "default"), HG_FORREAL (0/1) and HG_OFFLINE (0/1).
+# HG_CUSTODIAN: --custodian <handle>, for an operator profile enrolling on a
+# custodian's behalf (the server refuses an operator enroll that names none).
 # Leaves the remaining args in HG_ARGS.
 hg_active_context() {
   if [ -n "${GOAT_CONTEXT:-}" ]; then echo "$GOAT_CONTEXT"; return; fi
@@ -33,6 +35,7 @@ hg_active_context() {
 hg_parse_env() {
   HG_CTX="$(hg_active_context)"
   HG_FORREAL=0
+  HG_CUSTODIAN="${HG_CUSTODIAN:-}"
   HG_OFFLINE="${HG_OFFLINE:-0}"
   HG_ARGS=()
   while [ $# -gt 0 ]; do
@@ -40,6 +43,7 @@ hg_parse_env() {
       --env) HG_CTX="${2:?--env needs a value}"; shift 2 ;;
       --for-real) HG_FORREAL=1; shift ;;
       --offline) HG_OFFLINE=1; shift ;;
+      --custodian) HG_CUSTODIAN="${2:?--custodian needs a value}"; shift 2 ;;
       *) HG_ARGS+=("$1"); shift ;;
     esac
   done

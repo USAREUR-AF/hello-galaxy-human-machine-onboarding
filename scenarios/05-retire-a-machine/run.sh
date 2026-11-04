@@ -15,7 +15,7 @@ hg_note "and a one-off setup key. Retiring it removes its reach and frees the sl
 hg_note "and keeps the record of who brought it on."
 
 hg_step "2 — Retire it"
-hg_goat_write machine revoke "$HANDLE"
+hg_goat_write machine revoke "$HANDLE" --yes
 
 hg_step "3 — What that did, in this order, and why the order is the design"
 hg_say "• deleted the machine's PEER on the mgmt server"

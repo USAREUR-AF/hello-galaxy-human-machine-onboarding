@@ -11,7 +11,7 @@ command is shown and marked `[needs-goatnet]`. Every **live** grade below means
 
 | Element | What the demo does | Grade |
 |---|---|---|
-| **The commands themselves** (`goat admin onboard`, `goat machine enroll`, `goat machine ls`, `goat access who`, `goat who`) | the real `goat` CLI verbs, exactly as an operator runs them | **live** (shown; run with `--for-real` / read steps run outright) |
+| **The commands themselves** (`goat admin invite`, `goat admin queue`, `goat machine enroll`, `goat machine ls`, `goat access who`, `goat who`) | the real `goat` CLI verbs, exactly as an operator runs them | **live** (shown; run with `--for-real` / read steps run outright) |
 | **Machine enrollment** (own slot + cert + custody edge + quota) | with `--for-real` + an operator profile, mints a real machine on the target goatnet | **live** |
 | **The mesh leg** (class-derived NetBird groups + a one-off single-use setup key) | the portal derives the groups from the node-class and mints the key; hand-picking `auto_groups` for gear is not a sanctioned path anywhere, and an hourly audit reports any peer that got in that way | **live** (needs goat-cli ≥ 0.4.39 — older releases silently DROP the returned key) |
 | **The mint is the ONLY door** (gear with no custody edge is reported) | not a demo step — a scheduled audit on each goatnet's mgmt host joins live NetBird membership to the machine registry hourly and grades every gear-class peer `aligned` / `pending-reconcile` / `violation` / `unknown`. Hand-picking `auto_groups` for gear is now *caught*, not merely *unsanctioned* | **live** — per goatnet, the audit either reports a violation or fails its unit on one |

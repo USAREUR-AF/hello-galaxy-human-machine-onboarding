@@ -13,7 +13,8 @@ hg_step "1 — A function-class machine is self-service"
 hg_note "SENSOR-FEED is mission payload the custodian owns → no queue, just their quota."
 hg_note "The class is a FUNCTION, not a kind of box. A box doing two jobs"
 hg_note "is enrolled twice, once per job — that is what stops a catch-all forming."
-hg_goat_write machine enroll "$HANDLE" --node-class SENSOR-FEED --autonomy supervised
+hg_goat_write machine enroll "$HANDLE" --node-class SENSOR-FEED --autonomy supervised \
+  ${HG_CUSTODIAN:+--custodian "$HG_CUSTODIAN"}
 
 hg_step "2 — What that mint did (atomically)"
 hg_say "• allocated the machine its OWN <uuid>/<taxonomy> slot (wire-distinguishable)"
@@ -45,7 +46,7 @@ hg_say "on is how a catch-all gets chosen instead."
 
 hg_step "5 — Infrastructure is operator-gated (the deliberate exception)"
 hg_note "A non-operator trying an infra class is refused; an operator names the custodian."
-hg_goat_write machine enroll demo-mgmt-$$ --node-class MGMT-HOST --custodian "$(whoami)"
+hg_goat_write machine enroll demo-mgmt-$$ --node-class MGMT-HOST --custodian "${HG_CUSTODIAN:-$(whoami)}"
 
 hg_summary "Result" "A wire-distinguishable machine principal, custody-attributed, quota-enforced."
 hg_honest live "Against a real portal with an operator profile (--for-real), this mints a real machine on the target goatnet. Retire throwaways with scenario 05 when done."

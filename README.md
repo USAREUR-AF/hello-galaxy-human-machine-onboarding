@@ -77,7 +77,7 @@ bin/hg-onboard 04-see-the-custody       # read-only, runs against the goatnet yo
 bin/hg-onboard 02-onboard-a-machine --for-real   # actually mint (operator profile)
 ```
 
-`--env <ctx>` targets a goat context (default: the active one). Read steps run
+`--env <ctx>` targets a goat context (default: the active one). An operator profile enrolling on someone else's behalf adds `--custodian <handle>`. Read steps run
 against it; WRITE steps are *shown* by default and only *executed* with
 `--for-real` against a real operator profile (use throwaway handles, and retire
 them with scenario 05 when done).

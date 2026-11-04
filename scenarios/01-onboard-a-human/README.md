@@ -15,23 +15,27 @@ single actor makes more than one of the trust decisions:
    one-time link, pre-binding the things the candidate must not choose for
    themselves: tier, affiliation, site, and a **machine quota**.
    ```
-   goat admin invite --tier developer --affiliation acme --machine-quota 5
+   goat admin invite --env <goatnet> --tier developer --machine-quota 5
    ```
+   `--affiliation <org>` pre-binds the candidate's organisation; it must name an
+   organisation already registered on that goatnet, or the invite is refused.
 2. **Submit** — the candidate opens the public one-time link and fills their own
    details. This lands as an inert *proposal*, not an identity. They **cannot
    self-escalate** their tier — an escalated tier is refused fail-closed.
 3. **Vouch** — the sponsor reviews the filled submission and vouches for it. (Gate 1.)
+   ```
+   goat admin queue ls --status proposed
+   goat admin queue sponsor-approve <prop-id>
+   ```
 4. **Approve** — a separate *admin* approves the vouched proposal. (Gate 2 — a
    different human.)
    ```
-   goat admin queue approve <handle>
+   goat admin queue approve <prop-id>
    ```
 5. **Mint** — the onboard-runner writes the identity across every plane it needs:
    a NetBird setup key (mesh), a Zenoh slot + cert + api_key (fabric), an Ory login
-   (console), and the signed **`.cbor` bundle** the person carries.
-   ```
-   goat admin onboard <handle>
-   ```
+   (console), and the signed **`.cbor` bundle** the person carries. Nobody runs a
+   command for this step: the admin's approval hands the proposal to the runner.
 
 ## What it proves
 
