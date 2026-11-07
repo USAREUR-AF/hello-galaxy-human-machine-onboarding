@@ -112,3 +112,7 @@ self-contained demonstrations of the goat data fabric. The designs behind it are
 goatcore: three-stage person onboarding ([ADR 1062](https://github.com/usareur-af/goatcore/blob/main/docs/adr/1062-three-stage-delegated-candidate-onboarding.md)),
 delegated machine enrollment ([ADR 1096](https://github.com/usareur-af/goatcore/blob/main/docs/adr/1096-delegated-machine-enrollment.md)) and
 mesh-first revocation ([ADR 1031](https://github.com/usareur-af/goatcore/blob/main/docs/adr/1031-credential-revocation-mesh-first-offboarding.md)).*
+
+## Licence
+
+`hello-galaxy-human-machine-onboarding` was written by U.S. Federal government employees. In the U.S. it is not subject to copyright and is in the public domain; in countries where copyright is recognized, it is released under the [Apache License 2.0](LICENSE). See [INTENT.md](INTENT.md).
