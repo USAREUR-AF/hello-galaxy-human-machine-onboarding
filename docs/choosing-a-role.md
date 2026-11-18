@@ -29,8 +29,9 @@ a role that already exists or a machine's own key, not an administrator role.
 
 Every publisher holds a portal key scoped to their own slot. An operator key is the
 whole goatnet's administration on both the portal and the identity console, and there is
-no read-only or single-org variant. It belongs to platform administrators and named
-services. A demotion takes it.
+no read-only or single-org variant. Only identity and platform administrators may
+request one, and a different administrator approves it. Revoke it when the holder's job
+no longer needs it; removing a role does not by itself remove a key.
 
 Designs in goatcore: the tiers ([onboard-tier-role-model](https://github.com/usareur-af/goatcore/blob/main/docs/design/onboard-tier-role-model.md)),
 data roles ([data-access-roles](https://github.com/usareur-af/goatcore/blob/main/docs/design/data-access-roles.md)),
