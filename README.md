@@ -92,6 +92,7 @@ them with scenario 05 when done).
 | 03 | [decompose-a-platform](scenarios/03-decompose-a-platform) | a PLATFORM → effector-cue/effector-arbiter workloads, holding their union |
 | 04 | [see-the-custody](scenarios/04-see-the-custody) | read the custody edge back, three ways, live |
 | 05 | [retire-a-machine](scenarios/05-retire-a-machine) | the exit: mesh-first revoke, quota back, record intact |
+| 06 | [the-least-role](scenarios/06-the-least-role) | a machine's topic registered with the machine's key; your own key refused; no role grows |
 
 ## Read next
 
@@ -101,6 +102,8 @@ them with scenario 05 when done).
 - [The mechanisms & the philosophy](docs/the-philosophy.md) — why the two flows are
   one system, and the ideas behind the shape.
 - [The honesty matrix](docs/honesty-matrix.md) — what's live vs represented.
+- [Choosing a role](docs/choosing-a-role.md) — the roles, who each is for, and the
+  narrowest one that does a job.
 - [Administering onboarding](docs/administering-onboarding.md) — the day-2 side:
   which credential is which, why `goat admin rotate` is not a way to hand someone
   a key, and how to triage "I can't get in".
