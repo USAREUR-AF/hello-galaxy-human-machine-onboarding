@@ -1,5 +1,10 @@
 # hello-galaxy-human-machine-onboarding
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/two-ceremonies-dark.svg">
+  <img src="docs/figures/two-ceremonies-light.svg" width="760" alt="A person is invited, submits, is vouched for by the sponsor and approved by a different admin, then minted a NetBird key, a Zenoh slot and certificate, an Ory login and a .cbor bundle; their machine is enrolled by its custodian with goat machine enroll against the quota set at the invite, with no human gate, and minted its own slot, Zenoh certificate and NetBird key, with no Ory login and no .cbor bundle.">
+</picture>
+
 **A hands-on demonstration of how the goat data fabric onboards *both* people and
 machines — a person, then a machine, then a platform that decomposes into
 workloads — that you can walk through in a few minutes.**
